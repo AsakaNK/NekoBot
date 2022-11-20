@@ -15,23 +15,22 @@ const { getSetupData } = require('../utils/enmapUtils');
 /* ----------------------------------------------- */
 /* FUNCTIONS                                       */
 /* ----------------------------------------------- */
-async function thread(msg){
-    if(Thread == false) return;
-    if(msg.author.bot) return;
+async function thread(msg) {
+    if (Thread == false) return;
+    if (msg.author.bot) return;
     const THREAD_ID = await getSetupData(msg.channel.id, "thread")
-    if(THREAD_ID != msg.channel.id) return
+    if (THREAD_ID != msg.channel.id) return
 
     let messageContent
-    if(msg.content != ""){
+    if (msg.content != "") {
         messageContent = " - " + msg.content
-    }
-    else{
+    } else {
         messageContent = ""
     }
 
     var messageTotal = "Réponses ┃ " + msg.author.username + messageContent + " (" + msg.id + ") "
-    
-    if(messageTotal.length >= 100){
+
+    if (messageTotal.length >= 100) {
         messageTotal = "Réponses ┃ " + msg.author.username + " (" + msg.id + ") "
     }
 
@@ -41,14 +40,14 @@ async function thread(msg){
     });
 }
 
-async function threadDelete(msg){
-    if(Thread == false) return;
-    if(msg.thread != null)
+async function threadDelete(msg) {
+    if (Thread == false) return;
+    if (msg.thread != null)
         msg.thread.delete("Message supprimé")
-    
+
 }
 
-module.exports ={
+module.exports = {
     thread,
     threadDelete
 }

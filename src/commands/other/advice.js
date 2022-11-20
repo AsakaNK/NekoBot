@@ -1,19 +1,20 @@
 /**
- * @author Lothaire Guée
+ * @author Luna Nekomimi
  * @description
- *      Contient la commande 'ping'.
- *      Pong the user.
+ *      Contient la commande 'advice'.
+ *      conseil the user.
  */
 
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { Advice } = require("../../files/modules");
 
 /* ----------------------------------------------- */
 /* COMMAND BUILD                                   */
 /* ----------------------------------------------- */
 const slashCommand = new SlashCommandBuilder()
-    .setName("ping")
+    .setName("advice")
     .setDescription(
-        "[other] Donne la latence du bot et de l'API Discord en millisecondes."
+        "[Aide] Te donne un conseil super utile pour ta vie"
     )
     .setDefaultPermission(false);
 
@@ -21,16 +22,26 @@ const slashCommand = new SlashCommandBuilder()
 /* FUNCTIONS                                       */
 /* ----------------------------------------------- */
 /**
- * Fonction appelé quand la commande est 'ping'
+ * 
+ * Fonction appelé quand la commande est 'advice'
  * @param {CommandInteraction} interaction L'interaction généré par l'exécution de la commande.
  */
+
 async function execute(interaction) {
+    if (Advice == false) {
+        await interaction.reply({
+            content: "Cheh t'es nul",
+            ephemeral: true,
+        })
+        return;
+    }
+    let advice = ["Tu veux des neko ? Viens sur Neko Paradise", "azerty", "uiop"];
+    let randomValue = Math.floor(Math.random() * advice.length);
 
     await interaction.reply({
-        content: `🏓 **PING**
-		La latence du bot est de ${interaction.createdTimestamp - Date.now()}ms.
-		Latence API Discord : ${Math.round(interaction.client.ws.ping)}ms`,
-        ephemeral: false,
+
+        content: advice[randomValue],
+        ephemeral: true,
     });
 }
 

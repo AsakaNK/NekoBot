@@ -30,13 +30,13 @@ async function loadMemes(msg) {
     const discussion = await getSetupData(msg.channel.id, "discussion");
     if (msg.channel.id != discussion) return;
 
-    // Génère un nombre random entre 1 et 30
+    // Génère un nombre random entre 1 et 100
     let randomValue = Math.floor(Math.random() * 100 + 1);
     if (randomValue > 1) return;
 
     memes.fetchEverything();
     let isSent = false;
-    memes.forEach(async (value, key) => {
+    memes.forEach(async(value, key) => {
         if (isSent) return;
         if (msg.content.includes(key)) {
             msg.reply(value);

@@ -15,3 +15,4 @@ exports.Thread = true;
 exports.Memes = true;
 exports.Presence = true;
 exports.WelcomeMember = true;
+exports.Advice = false;
