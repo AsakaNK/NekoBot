@@ -250,3 +250,10 @@ exports.STATES = [
     // "c'est encore un troll de pozor"
 
 ]; // Array list contenant les phrases que WTPbot va changer dans son statut.
+
+exports.ADVICE = [
+    "azertyuiop",
+    "ceci est un texte",
+    "epokfrjrjpruhuêrhah",
+    "Hollow knight c'est un jeu cool"
+];

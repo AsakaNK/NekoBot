@@ -12,6 +12,7 @@ const {
     setupMemes,
     setupThread,
     setupWelcome,
+    setupProposition,
 } = require("../../utils/enmapUtils");
 
 /*      AUTHORISATION      */
@@ -44,6 +45,13 @@ const slashCommand = new SlashCommandBuilder()
                 "Définir/Supprimer le channel pour les bienvenus. (Il ne peut n'y en avoir qu'un)"
             )
     )
+    .addSubcommand((subcommand) =>
+    subcommand
+        .setName("proposition")
+        .setDescription(
+            "Définir/Supprimer le channel pour les propositions. (Il ne peut n'y en avoir qu'un)"
+        )
+)
 
 /* ----------------------------------------------- */
 /* FUNCTIONS                                       */
@@ -97,6 +105,21 @@ async function execute(interaction) {
                 setupWelcome.delete(interaction.guild.id);
                 await interaction.reply({
                     content: `Channel pour les bienvenus supprimé du serveur !`,
+                    ephemeral: true,
+                });
+            }
+            break;
+        case "proposition":
+            if (setupProposition.get(interaction.channel.id) === undefined) {
+                setupProposition.set(interaction.channel.id, interaction.guild.id);
+                await interaction.reply({
+                    content: `Channel <#${interaction.channel.id}> ajouté à la liste du channel proposition !`,
+                    ephemeral: true,
+                });
+            } else {
+                setupProposition.delete(interaction.channel.id);
+                await interaction.reply({
+                    content: `Channel <#${interaction.channel.id}> supprimé de la liste du channel proposition !`,
                     ephemeral: true,
                 });
             }

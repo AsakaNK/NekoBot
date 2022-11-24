@@ -7,7 +7,7 @@
 
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Advice } = require("../../files/modules");
-
+const { advice } = require("../../utils/enmapUtils.js");
 /* ----------------------------------------------- */
 /* COMMAND BUILD                                   */
 /* ----------------------------------------------- */
@@ -35,12 +35,9 @@ async function execute(interaction) {
         })
         return;
     }
-    let advice = ["Tu veux des neko ? Viens sur Neko Paradise", "azerty", "uiop"];
-    let randomValue = Math.floor(Math.random() * advice.length);
-
+    
     await interaction.reply({
-
-        content: advice[randomValue],
+        content: await advice.randomKey(),
         ephemeral: true,
     });
 }

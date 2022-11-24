@@ -16,4 +16,4 @@ exports.Memes = true;
 exports.Presence = true;
 exports.WelcomeMember = true;
 exports.Advice = true;
-exports.Embled = true;
+exports.Proposition = true;

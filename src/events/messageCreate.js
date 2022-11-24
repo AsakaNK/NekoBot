@@ -4,6 +4,7 @@
  *		This event is used to store the memes in the database and add their initial reactions.
  */
 
+const { proposition } = require("../modules/proposition.js");
 const { thread } = require("../modules/thread.js");
 const { memes, getSetupData } = require("../utils/enmapUtils.js");
 
@@ -20,6 +21,7 @@ async function execute(message, client) {
     try {
         thread(message);
         loadMemes(message);
+        proposition(message);
     } catch (e) {
         console.log(e);
     }
