@@ -26,14 +26,24 @@ async function proposition(message) {
     const exampleEmbed = new EmbedBuilder()
         .setColor(0x2F3136)
         .setTitle(`proposition de "${message.author.tag}"`)
-        .addFields({name: 'proposition de :', value: `<@${message.author.id}>`})
+        .addFields({ name: "Votes : ", value: '`✅` oui\n`⚪` neutre\n`❌` non', inline: true},
+            { name: 'Proposition de : ', value: `<@${message.author.id}>`,inline: true })
         .setAuthor({ name: message.author.username, iconURL: message.author.avatarURL() })
         .setDescription(message.content)
         .setTimestamp()
         .setFooter({ text: 'NekoBot', iconURL: message.client.user.avatarURL(),  });
     
-    message.channel.send({ embeds: [exampleEmbed] })
+    message.channel.send({ embeds: [exampleEmbed] }).then(msg => {
+        msg.react('✅')
+        msg.react('⚪')
+        msg.react('❌')
+        msg.startThread({
+            name: "Thread pour débattre.", //sur la proposition de " + message.author.username,
+            autoArchiveDuration: 1440,
+        });
+    })
     message.delete()
+    
 }
 
 module.exports = {
