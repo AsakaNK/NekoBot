@@ -1,8 +1,8 @@
 /**
- * @author Lothaire Guée
+ * @author Luna Nekomimi
  * @description
- *      Add a thread on each channel if the channel is allowed/present in the database
- *      in order to create a comments section on each message.
+ *      Setup a embed with reaction and a thead when a message is send, 
+ *      useful to send proposals for the server or other
  */
 
 
@@ -27,17 +27,17 @@ async function proposition(message) {
         .setColor(0x2F3136)
         .setTitle(`proposition de "${message.author.tag}"`)
         .addFields({ name: "Votes : ", value: '`✅` oui\n`⚪` neutre\n`❌` non', inline: true},
-            { name: 'Proposition de : ', value: `<@${message.author.id}>`,inline: true })
+            { name: 'Proposition de : ', value: `<@${message.author.id}>`,inline: true },)
         .setAuthor({ name: message.author.username, iconURL: message.author.avatarURL() })
         .setDescription(message.content)
         .setTimestamp()
         .setFooter({ text: 'NekoBot', iconURL: message.client.user.avatarURL(),  });
     
-    message.channel.send({ embeds: [exampleEmbed] }).then(msg => {
-        msg.react('✅')
-        msg.react('⚪')
-        msg.react('❌')
-        msg.startThread({
+    message.channel.send({ embeds: [exampleEmbed] }).then(async msg =>  {
+        await msg.react('✅')
+        await msg.react('⚪')
+        await msg.react('❌')
+        await msg.startThread({
             name: "Thread pour débattre.", //sur la proposition de " + message.author.username,
             autoArchiveDuration: 1440,
         });
