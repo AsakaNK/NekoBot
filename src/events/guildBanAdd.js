@@ -1,23 +1,25 @@
 /**
  * @author Lothaire Guée
  * @description
- *      This event is used to track member who entered.
+ *      Traquer un gibier banni. 
  */
 
+const { banLogs } = require("../modules/logs")
 
-const { GuildMember } = require( "discord.js" );
-const { welcomeMember } = require("../modules/welcomeMember");
+
 
 
 /* ----------------------------------------------- */
 /* FUNCTIONS                                       */
 /* ----------------------------------------------- */
 /**
- * Function called when the event 'guildMemberAdd' is emitted.
- * @param {GuildMember} member The new member object.
+ * Function called when the event 'guildBanAdd' is emitted.
+ * @param guild The guild in which the ban is
+ * @param reason The reason for the ban
+ * @param user The user this ban applies to
  */
-async function execute( member, client ) {
-	welcomeMember(member, client)
+async function execute( guildBan, client ) { 
+	banLogs(guildBan, client)
 }
 
 
@@ -25,6 +27,6 @@ async function execute( member, client ) {
 /* MODULE EXPORTS                                  */
 /* ----------------------------------------------- */
 module.exports = {
-	name: "guildMemberAdd",
+	name: "guildBanAdd",
 	execute
 }

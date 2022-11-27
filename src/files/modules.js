@@ -17,3 +17,4 @@ exports.Presence = true;
 exports.WelcomeMember = true;
 exports.Advice = true;
 exports.Proposition = true;
+exports.Logs = true;

@@ -17,6 +17,7 @@ const setupMemes = new Enmap({ name: "setup_memes" });
 const setupThread = new Enmap({ name: "setup_thread" });
 const setupWelcome = new Enmap({ name: "setup_welcome" });
 const setupProposition = new Enmap({ name: "setup_proposition" });
+const setupLogs = new Enmap({ name: "setup_logs" });
 
 // PRESENCE AND MEMES DATABASE INIT
 const memes = new Enmap({ name: "memes" });
@@ -54,8 +55,11 @@ async function getSetupData(id, type) {
         case "proposition":
             // Here id is the channel
             return await getResultsKey(setupProposition, id)
-        default:
-            break;
+        case "logs":
+            // Here id is the guild
+            return await getResultsValue(setupLogs, id)
+            default:
+        break;
     }
 
 }
@@ -110,6 +114,7 @@ module.exports = {
     setupThread,
     setupWelcome,
     setupProposition,
+    setupLogs,
     memes,
     presence,
     advice,

@@ -13,6 +13,7 @@ const {
     setupThread,
     setupWelcome,
     setupProposition,
+    setupLogs,
 } = require("../../utils/enmapUtils");
 
 /*      AUTHORISATION      */
@@ -51,7 +52,15 @@ const slashCommand = new SlashCommandBuilder()
         .setDescription(
             "Définir/Supprimer le channel pour les propositions. (Il ne peut n'y en avoir qu'un)"
         )
-)
+    )
+    .addSubcommand((subcommand) =>
+    subcommand
+        .setName("logs")
+        .setDescription(
+        "Définir/Supprimer le channel pour les Logs. (Il ne peut n'y en avoir qu'un)"
+        )
+    )   
+
 
 /* ----------------------------------------------- */
 /* FUNCTIONS                                       */
@@ -124,6 +133,21 @@ async function execute(interaction) {
                 });
             }
             break;
+        case "logs":
+            if (setupLogs.get(interaction.guild.id) === undefined) {
+                 setupLogs.set(interaction.guild.id, interaction.channel.id);
+                 await interaction.reply({
+                     content: `Channel pour les logs ajouté au serveur dans <#${interaction.channel.id}> !`,
+                     ephemeral: true,
+                });
+            } else {
+                 setupLogs.delete(interaction.guild.id);
+                await interaction.reply({
+                    content: `Channel pour les logs supprimé du serveur !`,
+                    ephemeral: true,
+                 });
+            }
+             break;
     }
 }
 
