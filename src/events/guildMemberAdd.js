@@ -7,6 +7,8 @@
 
 const { GuildMember } = require( "discord.js" );
 const { welcomeMember } = require("../modules/welcomeMember");
+const { newMemberLogs } = require("../modules/logs");
+
 
 
 /* ----------------------------------------------- */
@@ -18,6 +20,7 @@ const { welcomeMember } = require("../modules/welcomeMember");
  */
 async function execute( member, client ) {
 	welcomeMember(member, client)
+	newMemberLogs(member, client)
 }
 
 
