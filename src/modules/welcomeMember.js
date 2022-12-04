@@ -31,6 +31,7 @@ async function welcomeMember(member, client){
 
 }
 
+
 module.exports ={
     welcomeMember
 }
