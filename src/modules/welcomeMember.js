@@ -11,7 +11,7 @@ const { WelcomeMember } = require('../files/modules.js');
 
 /*      IMPORTS      */
 const { getSetupData } = require("../utils/enmapUtils")
-const { NEW } = require('../files/welcomeMessages.js');
+// const { NEW } = require('../files/welcomeMessages.js');
 
 /* ----------------------------------------------- */
 /* FUNCTIONS                                       */
