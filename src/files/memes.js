@@ -208,7 +208,7 @@ exports.STATES = [
     // "le Twitter de FRANCE MEMES, trodébar ! - https://twitter.com/francememes_",
 
     //MEMES
-    "#NEKOPOWER"
+    "some Nekos"
     // "si Lotharie ne se chie pas dessus...",
     // "pas ta mère ! UwU",
     // "2 Girls, 1 Cup",
