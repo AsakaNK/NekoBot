@@ -1,5 +1,5 @@
 /**
- * @author Lothaire Guée
+ * @author Luna Nekomimi
  * @description
  *      Traquer un gibier banni. 
  */
@@ -14,9 +14,8 @@ const { banLogs } = require("../modules/logs")
 /* ----------------------------------------------- */
 /**
  * Function called when the event 'guildBanAdd' is emitted.
- * @param guild The guild in which the ban is
- * @param reason The reason for the ban
- * @param user The user this ban applies to
+ * @param guildBan Le serveur auquel la personne est ban
+ * @param client La personne bannis
  */
 async function execute( guildBan, client ) { 
 	banLogs(guildBan, client)

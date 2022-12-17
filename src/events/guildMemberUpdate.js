@@ -1,23 +1,25 @@
 /**
  * @author Luna Nekomimi
  * @description
- *      This event is used to track member who is kick.
+ *      Pour voir qui est mute (olala une bétise). 
  */
 
+const { timeoutLogs } = require("../modules/logs")
 
-const { GuildMember } = require( "discord.js" );
-const { kickLogs } = require("../modules/logs");
+
 
 
 /* ----------------------------------------------- */
 /* FUNCTIONS                                       */
 /* ----------------------------------------------- */
 /**
- * Function called when the event 'guildMemberRemove' is emitted.
- * @param {GuildMember} member The new member object.
+ * Function called when the event 'guildBanAdd' is emitted.
+ * @param oldMember Le membre avant
+ * @param newMember Le membre après
+ * @param client Le bot !!!!!!!!!!!!!!!!
  */
-async function execute( member, client ) {
-	kickLogs(member, client)
+async function execute( oldMember, newMember, client ) { 
+	timeoutLogs(oldMember, newMember, client)
 }
 
 
@@ -25,6 +27,6 @@ async function execute( member, client ) {
 /* MODULE EXPORTS                                  */
 /* ----------------------------------------------- */
 module.exports = {
-	name: "guildMemberRemove",
+	name: "guildMemberUpdate",
 	execute
 }

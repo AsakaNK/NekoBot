@@ -15,6 +15,6 @@ exports.Thread = true;
 exports.Memes = true;
 exports.Presence = true;
 exports.WelcomeMember = true;
-exports.Advice = true;
+exports.Advice = false;
 exports.Proposition = true;
 exports.Logs = true;
