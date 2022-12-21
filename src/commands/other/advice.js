@@ -30,7 +30,7 @@ const slashCommand = new SlashCommandBuilder()
 async function execute(interaction) {
     if (Advice == false) {
         await interaction.reply({
-            content: "Cheh t'es nul",
+            content: "La commande est désactivée. Veillez réesayer plus tard",
             ephemeral: true,
         })
         return;

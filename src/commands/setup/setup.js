@@ -147,7 +147,7 @@ async function execute(interaction) {
                     ephemeral: true,
                  });
             }
-             break;
+            break;
     }
 }
 
