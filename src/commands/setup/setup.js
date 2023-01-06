@@ -18,8 +18,10 @@ const {
 
 /*      AUTHORISATION      */
 const { Setup } = require("../../files/modules.js");
-const { client } = require("../../main");
-const { PermissionFlagsBits } = require("discord.js");
+
+const { promisify } = require( "util" );
+const { glob } = require( "glob" );
+const globPromise = promisify( glob );
 
 /* ----------------------------------------------- */
 /* COMMAND BUILD                                   */
@@ -63,6 +65,13 @@ const slashCommand = new SlashCommandBuilder()
     )   
 
 
+    globPromise( `${process.cwd()}/plugins/*/commands/setup.js` ).then((pluginsSetup) => {
+        pluginsSetup.map(file => {
+            const setup = require( file );
+            setup.addSetupCommand(slashCommand)
+        });
+    });
+
 /* ----------------------------------------------- */
 /* FUNCTIONS                                       */
 /* ----------------------------------------------- */
@@ -72,6 +81,12 @@ const slashCommand = new SlashCommandBuilder()
  */
 async function execute(interaction) {
     if (Setup == false) return;
+        
+    const pluginsSetup = await globPromise( `${process.cwd()}/plugins/*/commands/setup.js` );
+    pluginsSetup.map(file => {
+        const setup = require( file );
+        setup.execute(interaction)
+    });
 
     switch (interaction.options._subcommand) {
         case "memes":

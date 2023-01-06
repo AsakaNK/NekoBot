@@ -1,5 +1,5 @@
 /**
- * @author Lothaire Guée
+ * @author Benjamin Guirlet
  * @description
  * 		The file contains the functions to load the commands and events in the bot at startup.
  */
@@ -10,10 +10,10 @@ const { promisify } = require( "util" );
 const { glob } = require( "glob" );
 const globPromise = promisify( glob );
 
-
 /* ----------------------------------------------- */
 /* FUNCTIONS                                       */
 /* ----------------------------------------------- */
+
 /**
  * Load the commands in the client.
  * @param {Client} client The client of the bot.
@@ -24,6 +24,20 @@ async function loadCommands( client ) {
         const command = require( file );
         client.commands.set( command.data.name, command );
     });
+    const plugins = await globPromise( `${process.cwd()}/plugins/*/commands/*.js` );
+    plugins.map( file => {
+        let fileName = file.split("/");
+        fileName = fileName[fileName.length - 1];
+        if(fileName === "setup.js" || fileName === "setup" ) return;
+        const command = require( file );
+        client.commands.set( command.data.name, command );
+    });
+    const pluginsFolder = await globPromise( `${process.cwd()}/plugins/*` );
+    pluginsFolder.map( file => {
+        file = file.split("/");
+        file = file[file.length - 1];
+        console.log("[Plugin] " + file);
+    })
 }
 
 
@@ -34,6 +48,14 @@ async function loadCommands( client ) {
 async function loadEvents( client ) {
     const files = await globPromise( `${process.cwd()}/events/*.js` );
     files.map( file => {
+        const event = require( file );
+        if ( event.once )
+            client.once( event.name, ( ...args ) => event.execute( ...args, client ) );
+        else
+            client.on( event.name, ( ...args ) => event.execute( ...args, client ) );
+    });
+    const pluginsFiles = await globPromise( `${process.cwd()}/plugins/*/events/*.js` );
+    pluginsFiles.map( file => {
         const event = require( file );
         if ( event.once )
             client.once( event.name, ( ...args ) => event.execute( ...args, client ) );
@@ -54,7 +76,7 @@ async function loadCommandsToGuild( client, guildId ) {
         commandsArray.push( command.data.toJSON() );
     });
 
-    // Si vous ne voulez pas charger les commandes dans un serveur spécifique, vous pouvez utiliser ces lignes de code.
+    // Retirer la condition pour charger en prod
     // if(guildId === "724408079550251080"){
     //     await client.guilds.cache.get( guildId ).commands.set([]);
     //     return
@@ -75,7 +97,6 @@ async function loadCommandToAllGuilds( client ) {
     });
     // console.log( "Loaded application (/) commands to the guild!\nThe commands may take up to an hour before being available on the guilds." );
 }
-
 
 /* ----------------------------------------------- */
 /* MODULE EXPORTS                                  */
