@@ -28,7 +28,7 @@ async function banLogs(guildBan , client){
     const logsBanEmbed = new EmbedBuilder()
     .setColor(0xFF0000)
     .setAuthor({ name: guildBan.user.tag, iconURL: guildBan.user.avatarURL() })
-    .setDescription( `${guildBan.user.tag} a été bannis de Neko Paradise`)
+    .setDescription( `${guildBan.user.tag} a été banni de Neko Paradise`)
     .setTimestamp()
     .addFields({name: "Date :", value: `<t:${Date.now().toString().slice(0,-3)}:R>` });
 
@@ -43,6 +43,7 @@ async function banLogs(guildBan , client){
 
 async function kickLogs(member, client){
     if(Logs == false) return;
+    if(await member.guild.bans.fetch(member.id)) return;
 
     const LOGS_ID = await getSetupData(member.guild.id, "logs")
     if(LOGS_ID == undefined || LOGS_ID == null) return;
@@ -129,9 +130,6 @@ async function timeoutLogs(oldMember, newMember, client){
         }
     }
     
-
-    console.log(oldMember.communicationDisabledUntilTimestamp);
-    console.log(newMember.communicationDisabledUntilTimestamp);
 
 
 }

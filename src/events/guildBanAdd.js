@@ -5,6 +5,8 @@
  */
 
 const { banLogs } = require("../modules/logs")
+// const { banCommand } = require("../Commands/other/ban.js")
+
 
 
 
@@ -19,6 +21,8 @@ const { banLogs } = require("../modules/logs")
  */
 async function execute( guildBan, client ) { 
 	banLogs(guildBan, client)
+	// banCommand(guildBan, client)
+
 }
 
 

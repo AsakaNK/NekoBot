@@ -19,6 +19,7 @@ const {
 /*      AUTHORISATION      */
 const { Setup } = require("../../files/modules.js");
 const { client } = require("../../main");
+const { PermissionFlagsBits } = require("discord.js");
 
 /* ----------------------------------------------- */
 /* COMMAND BUILD                                   */
@@ -26,7 +27,7 @@ const { client } = require("../../main");
 const slashCommand = new SlashCommandBuilder()
     .setName("setup")
     .setDescription("[setup] Setup une fonctionnalité du bot sur ce serveur.")
-    .setDefaultPermission(false)
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addSubcommand((subcommand) =>
         subcommand
             .setName("memes")

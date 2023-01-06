@@ -197,12 +197,13 @@ exports.MEMES = [
 exports.STATES = [
     "some Nekos",
     ".gg/nekofr",
+    "joue avec une pelotte de laine",
+    "Neko un jour, Neko toujours",
+    "Choose your Neko *musique épique sui se lance*",
 
 ]; // Array list contenant les phrases que WTPbot va changer dans son statut.
 
 exports.ADVICE = [
-    "azertyuiop",
     "ceci est un texte",
-    "epokfrjrjpruhuêrhah",
     "Hollow knight c'est un jeu cool"
 ];

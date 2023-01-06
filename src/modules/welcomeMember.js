@@ -26,7 +26,7 @@ async function welcomeMember(member, client){
     const welcomeChannel = await client.channels.cache.find(channel => channel.id === WELCOME_ID)
     let message = `Hey yo <@${member.id}>, bienvenue sur ***${member.guild.name}*** !`;
     
-    welcomeChannel.send(message)
+    welcomeChannel?.send(message)
     // member.send({ embeds: [NEW] });
 
 }
