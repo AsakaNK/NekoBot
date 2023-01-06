@@ -1,3 +1,18 @@
 [submodule "src/plugins/thread"]
 	path = src/plugins/thread
 	url = https://github.com/LotharieSlayer/thread
+[submodule "src/plugins/proposition"]
+	path = src/plugins/proposition
+	url = https://github.com/AsakaNK/proposition
+[submodule "src/plugins/log"]
+	path = src/plugins/log
+	url = https://github.com/AsakaNK/log
+[submodule "src/plugins/moderation"]
+	path = src/plugins/moderation
+	url = https://github.com/AsakaNK/moderation
+[submodule "src/plugins/activity"]
+	path = src/plugins/activity
+	url = https://github.com/LotharieSlayer/activity
+[submodule "src/plugins/welcome"]
+	path = src/plugins/welcome
+	url = https://github.com/LotharieSlayer/welcome
