@@ -50,7 +50,7 @@ function getMs(time){
  */
 function getMsTime(string_date) {
     const multipliers = {
-        'd': 24 * 3600 * 1000,
+        'j': 24 * 3600 * 1000,
         'h': 3600 * 1000,
         'm': 60 * 1000,
         's': 1000,
