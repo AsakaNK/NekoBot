@@ -7,6 +7,7 @@
 
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
+const { getMsTime } = require("../../utils/dateUtils");
 
 
 /* ----------------------------------------------- */
@@ -61,36 +62,9 @@ async function execute(interaction) {
             ephemeral: true});
 
     let temps = await interaction.options.getString('temps')      //pour avoir le temps
-    let ms
     
-    let jour = temps.split('j')
-    if(jour.length != 1){ 
-        ms = parseInt(jour[0])*24*60*60*1000
-        temps = jour[1]
-    }
-
-    let heure = temps.split('h')
-    if(heure.length != 1){ 
-        ms = ms + parseInt(heure[0])*60*60*1000
-        temps = temps + heure[1]
-    }
-
-
-    let minute = temps.split('m')
-    if(minute.length != 1){ 
-        ms = ms + parseInt(minute[0])*60*1000
-        temps = temps + minute[1]
-    }
- 
-
-    let seconde = temps.split('s')
-    if(seconde.length != 1){ 
-        ms = ms + parseInt(seconde[0])*1000
-        temps = temps + seconde[1]
-    }
-
     
-    await interaction.options.get('membre').member.timeout(ms,interaction.options.get('raison').value,)
+    await interaction.options.get('membre').member.timeout(getMsTime(temps),interaction.options.get('raison').value,)
 
     await interaction.reply({ embeds: [banEmbed],
     ephemeral: true })
